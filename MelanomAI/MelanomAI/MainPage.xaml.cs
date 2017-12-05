@@ -25,26 +25,33 @@ namespace MelanomAI
 
         private async void cameraToolbarItem_Clicked(object sender, EventArgs e)
         {
-            if (CrossMedia.Current.IsTakePhotoSupported)
+            try
             {
-                var mediaOptions = new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                if (CrossMedia.Current.IsTakePhotoSupported)
                 {
-                    Directory = "SkinMarks",
-                    Name = $"{DateTime.UtcNow}.jpg"
-                };
+                    var mediaOptions = new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                    {
+                        Directory = "SkinMarks",
+                        Name = $"{DateTime.UtcNow}.jpg"
+                    };
 
-                var file = await CrossMedia.Current.TakePhotoAsync(mediaOptions);
+                    var file = await CrossMedia.Current.TakePhotoAsync(mediaOptions);
 
-                if (file == null)
-                {
-                    await DisplayAlert("Error", "Ocurrió un error al obtener la imagen", "Ok");
-                    return;
+                    if (file == null)
+                    {
+                        await DisplayAlert("Error", "Ocurrió un error al obtener la imagen", "Ok");
+                        return;
+                    }
+
+                    var stream = file.GetStream();
+                    photoImage.Source = ImageSource.FromStream(() => file.GetStream());
+
+                    await MakePredictionAsync(stream);
                 }
-
-                var stream = file.GetStream();
-                photoImage.Source = ImageSource.FromStream(() => file.GetStream());
-
-                await MakePredictionAsync(stream);
+            }
+            catch(Exception ex)
+            {
+                await DisplayAlert("Exception", ex.Message, "Ok");
             }
 
             //var mediaOptions = new PickMediaOptions()

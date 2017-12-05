@@ -52,7 +52,13 @@
 	<string>Resources/Media.xcassets/LaunchImages.launchimage</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Media.xcassets/AppIcons1.appiconset</string>
-  <key>NSPhotoLibraryUsageDescription</key>
-  <string>We need access to your photos to assess them for benign of malignant melanoma.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photos to assess them for benign of malignant melanoma.</string>
+	<key>CFBundleName</key>
+	<string>melanom.ai</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need acces to your camera so you can take pictures of a skin mark for melanoma evaluation.</string>
 </dict>
 </plist>
