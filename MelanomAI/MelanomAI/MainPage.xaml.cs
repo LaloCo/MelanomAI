@@ -25,7 +25,7 @@ namespace MelanomAI
 
         private async void cameraToolbarItem_Clicked(object sender, EventArgs e)
         {
-            if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
+            if (CrossMedia.Current.IsTakePhotoSupported)
             {
                 var mediaOptions = new Plugin.Media.Abstractions.StoreCameraMediaOptions
                 {
