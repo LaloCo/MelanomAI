@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MelanomAI"
+             x:Class="MelanomAI.MainPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="cameraToolbarItem"
+                     Icon="camera.png"
+                     Clicked="cameraToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <Image x:Name="photoImage"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="StartAndExpand"
+                   Aspect="AspectFit"/>
+
+            <ListView x:Name="resultsListView"
+                      Grid.Row="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Tag}"
+                                  Detail="{Binding Probability, StringFormat='{0:P}'}"
+                                  TextColor="{StaticResource primaryColor}"
+                                  DetailColor="{StaticResource primaryColor}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
