@@ -42,27 +42,10 @@ namespace MelanomAI
                 }
 
                 var stream = file.GetStream();
-                photoImage.Source = ImageSource.FromStream(() => file.GetStream());
+                photoImage.Source = ImageSource.FromStream(() => stream);
 
                 await MakePredictionAsync(stream);
             }
-
-            //var mediaOptions = new PickMediaOptions()
-            //{
-            //    PhotoSize = PhotoSize.Small
-            //};
-            //var file = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
-
-            //if (file == null)
-            //{
-            //    await DisplayAlert("Error", "Ocurrió un error al obtener la imagen", "Ok");
-            //    return;
-            //}
-
-            //var stream = file.GetStream();
-            //photoImage.Source = ImageSource.FromStream(() => file.GetStream());
-
-            //await MakePredictionAsync(stream);
         }
 
         private async Task MakePredictionAsync(Stream stream)
